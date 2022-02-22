@@ -1,0 +1,39 @@
+.container{
+    margin: 2% 10%;
+    padding: 10px;
+    width: 80vw;
+    height:fit-content;
+    border: 1px solid black;
+}
+.reply-container{
+    margin: 2% 10% 2% 20%;
+    padding: 10px;
+    width: 70vw;
+    height:fit-content;
+    border: 1px solid black;
+}
+.comment-title{
+    font-size: medium;
+    font-weight: bold;
+}
+.comment-text{
+    margin: 2% 0;
+    text-align: justify;
+}
+.comment-footer{
+    width: 100%;
+    display: block;
+}
+.comment-feature{
+    display: block;
+}
+.feature{
+    margin: 0 1%;
+    cursor: pointer;
+}
+.feature:first-child{
+    margin-left: 0;
+}
+.time{
+    float: right;
+}
