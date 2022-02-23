@@ -46,9 +46,9 @@ export default function ReplyCard(props) {
 
   return (
     <>
-      {data.map((comment) => {
+      {data.map((comment ,key) => {
         return (
-          <div className="reply-container">
+          <div className="reply-container" key={key}>
             <div className="comment-title">{comment.name}</div>
             <hr />
             <div className="comment-text">{comment.message}</div>

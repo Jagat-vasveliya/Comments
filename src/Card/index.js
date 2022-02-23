@@ -14,7 +14,7 @@ export default function Card() {
     const response = await axios.get(
       `https://61fe43c7a58a4e00173c97b0.mockapi.io/comments`
     );
-    setData(response.data);
+    setData(response?.data);
   };
 
   const like = (status, id) => {
@@ -26,7 +26,7 @@ export default function Card() {
         like: status,
       },
     }).then((respone) => {
-      setRefresh(!refresh);
+      getData();
     });
   };
 
@@ -43,27 +43,27 @@ export default function Card() {
 
   return (
     <>
-      {data.map((comment) => {
+      {data.map((comment, key) => {
         return (
-          <>
+          <div key={key}>
             <div className="container">
-              <div className="comment-title">{comment.name}</div>
+              <div className="comment-title">{comment?.name}</div>
               <hr />
-              <div className="comment-text">{comment.message}</div>
+              <div className="comment-text">{comment?.message}</div>
               <hr />
               <div className="comment-footer">
                 <div className="comment-feature">
-                  {comment.like ? (
+                  {comment?.like ? (
                     <span
                       className="feature"
-                      onClick={() => like(!comment.like, comment.id)}
+                      onClick={() => like(!comment?.like, comment?.id)}
                     >
                       Dislike
                     </span>
                   ) : (
                     <span
                       className="feature"
-                      onClick={() => like(!comment.like, comment.id)}
+                      onClick={() => like(!comment?.like, comment?.id)}
                     >
                       Like
                     </span>
@@ -71,17 +71,17 @@ export default function Card() {
                   <span className="feature">Edit</span>
                   <span
                     className="feature"
-                    onClick={() => deleteComment(comment.id)}
+                    onClick={() => deleteComment(comment?.id)}
                   >
                     Delete
                   </span>
                   <span className="feature">Reply</span>
-                  <span className="time">{comment.time}</span>
+                  <span className="time">{comment?.time}</span>
                 </div>
               </div>
             </div>
             <ReplyCard id={comment.id} />
-          </>
+          </div>
         );
       })}
     </>
