@@ -11,19 +11,7 @@
     position: sticky;
     top: 0;
   }
-  .heading{
-    width: 100vw;
-  }
   .title{
     font-weight: bolder;
     font-size: 30px;
-  }
-  .btn{
-    float: right;
-    width: 100px;
-    margin-right: 2%;
-    padding: 10px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
   }

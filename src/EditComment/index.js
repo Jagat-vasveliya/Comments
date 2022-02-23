@@ -1,27 +1,26 @@
 import axios from "axios";
 import React, { useState } from "react";
-import "./index.css";
 
-export default function AddComment(props) {
-  const [message, setMessage] = useState("");
+export default function EditComment(props) {
+  const [message, setMessage] = useState(props.comment.message);
   const hendalChange = (event) => {
       setMessage(event.target.value);
   }
-  const addComment = (e) => {
+  const editComment = (e) => {
     e.preventDefault();
-    props?.setModal(false)
+    props?.setEditModal(false)
     var today = new Date(),
       time =
         today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    const url = `https://61fe43c7a58a4e00173c97b0.mockapi.io/comments`;
+    const url = `https://61fe43c7a58a4e00173c97b0.mockapi.io/comments/${props.comment.id}`;
     axios({
-      method: "post",
+      method: "put",
       url: url,
       data: {
         name: "Jagat Vasveliya",
         message: message,
         time: time,
-        like: false,
+        like: props.comment.like,
       },
     }).then((respone) => {
         props.getData();
@@ -29,7 +28,7 @@ export default function AddComment(props) {
   };
   const replyComment = (e) => {
     e.preventDefault();
-    props?.setModal(false)
+    props?.setEditModal(false)
     var today = new Date(),
       time =
         today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -52,14 +51,14 @@ export default function AddComment(props) {
     <div className="modal">
       <div className="modal-container">
         <div className="modal-header">
-          <span className="close" onClick={() => props?.setModal(false)}>
+          <span className="close" onClick={() => props?.setEditModal(false)}>
             &times;
           </span>
           <div className="modal-title">{props.title} Comment</div>
         </div>
         <hr />
         <div className="modal-body">
-          <form onSubmit={props.replyId ? (e) => replyComment(e) : (e) => addComment(e)}>
+          <form onSubmit={props.replyId ? (e) => replyComment(e) : (e) => editComment(e)}>
             <div className="form-control">
               <label htmlFor="message">Comment</label>
               <textarea
@@ -71,7 +70,7 @@ export default function AddComment(props) {
               ></textarea>
             </div>
             <div className="btn-send">
-              <button className="button">Send</button>
+              <button className="button">Edit</button>
             </div>
           </form>
         </div>
