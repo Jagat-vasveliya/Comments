@@ -45,8 +45,8 @@ export default function AddComment(props) {
         like: false,
       },
     }).then((respone) => {
-        props.getData();
-    });
+        props.getreplyData();
+    }).catch((err)=> console.log(err));
   };
   return (
     <div className="modal">

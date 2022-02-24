@@ -3,12 +3,13 @@ import React, { useState } from "react";
 
 export default function EditComment(props) {
   const [message, setMessage] = useState(props.comment.message);
+
   const hendalChange = (event) => {
-      setMessage(event.target.value);
-  }
+    setMessage(event.target.value);
+  };
   const editComment = (e) => {
     e.preventDefault();
-    props?.setEditModal(false)
+    props?.setEditModal(false);
     var today = new Date(),
       time =
         today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -23,28 +24,28 @@ export default function EditComment(props) {
         like: props.comment.like,
       },
     }).then((respone) => {
-        props.getData();
+      props.getData();
     });
   };
-  const replyComment = (e) => {
+  const editReplyComment = (e) => {
     e.preventDefault();
-    props?.setEditModal(false)
+    props?.setEditModal(false);
     var today = new Date(),
       time =
         today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    const url = `https://61fe43c7a58a4e00173c97b0.mockapi.io/commentsReply`;
+    const url = `https://61fe43c7a58a4e00173c97b0.mockapi.io/commentsReply/${props.comment.id}`;
     axios({
-      method: "post",
+      method: "put",
       url: url,
       data: {
-        commentId: props.replyId,
+        commentId: props.comment.commentId,
         name: "Jagat Vasveliya",
         message: message,
         time: time,
         like: false,
       },
     }).then((respone) => {
-        props.getData();
+      props.getreplyData();
     });
   };
   return (
@@ -58,7 +59,11 @@ export default function EditComment(props) {
         </div>
         <hr />
         <div className="modal-body">
-          <form onSubmit={props.replyId ? (e) => replyComment(e) : (e) => editComment(e)}>
+          <form
+            onSubmit={
+              props.comment.commentId ? (e) => editReplyComment(e) : (e) => editComment(e)
+            }
+          >
             <div className="form-control">
               <label htmlFor="message">Comment</label>
               <textarea

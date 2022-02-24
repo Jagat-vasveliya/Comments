@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import AddComment from "../AddComment";
+import React from "react";
 import "./index.css";
 
 export default function Header() {
   return (
-    <>
-      <header className="App-header">
-          <span className="title">Comments</span>
-      </header>
-    </>
+	 <>
+		<header className="App-header">
+			 <span className="title">Comments</span>
+		</header>
+	 </>
   );
 }

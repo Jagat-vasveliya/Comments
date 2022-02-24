@@ -1,13 +1,31 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import EditComment from "../EditComment";
 
 export default function ReplyCard(props) {
   const [data, setData] = useState([]);
+  const [editModal, setEditModal] = useState(false);
+  const [commentData, setCommentData] = useState();
+  const [replyId, setReplyid] = useState();
+  const [title, setTitle] = useState();
   useEffect(() => {
     getData();
-  }, []);
+  }, [props.id]);
 
   const getData = async () => {
+    axios
+      .get(
+        `https://61fe43c7a58a4e00173c97b0.mockapi.io/commentsReply?commentId=${props.id}`
+      )
+      .then((response) => response.data)
+      .then((responseData) => {
+        setData(responseData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const getreplyData = async () => {
     axios
       .get(
         `https://61fe43c7a58a4e00173c97b0.mockapi.io/commentsReply?commentId=${props.id}`
@@ -46,7 +64,7 @@ export default function ReplyCard(props) {
 
   return (
     <>
-      {data.map((comment ,key) => {
+      {data.map((comment, key) => {
         return (
           <div className="reply-container" key={key}>
             <div className="comment-title">{comment.name}</div>
@@ -70,7 +88,7 @@ export default function ReplyCard(props) {
                     Like
                   </span>
                 )}
-                <span className="feature">Edit</span>
+                <span className="feature" onClick={() => editComment(comment)}>Edit</span>
                 <span
                   className="feature"
                   onClick={() => deleteComment(comment.id)}
