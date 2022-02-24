@@ -64,7 +64,7 @@ export default function Card() {
         axios
           .delete(`https://61fe43c7a58a4e00173c97b0.mockapi.io/commentsReply`, {
             data: {
-              commentId: `${id}`,
+              commentId: id,
             },
           })
           .then((respone) => {
@@ -132,7 +132,7 @@ export default function Card() {
                     >
                       Delete
                     </span>
-                    <span className="time">{comment.time}</span>
+                    <span className="time">{comment.edit}&nbsp;&nbsp;&nbsp;{comment.time}</span>
                   </div>
                 </div>
               </div>
@@ -213,7 +213,7 @@ export default function Card() {
                   >
                     Reply
                   </span>
-                  <span className="time">{comment?.time}</span>
+                  <span className="time">{comment.edit}&nbsp;&nbsp;&nbsp;{comment.time}</span>
                 </div>
               </div>
             </div>

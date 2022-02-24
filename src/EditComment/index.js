@@ -12,7 +12,7 @@ export default function EditComment(props) {
     props?.setEditModal(false);
     var today = new Date(),
       time =
-        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        today.getHours() + ":" + today.getMinutes();
     const url = `https://61fe43c7a58a4e00173c97b0.mockapi.io/comments/${props.comment.id}`;
     axios({
       method: "put",
@@ -22,6 +22,7 @@ export default function EditComment(props) {
         message: message,
         time: time,
         like: props.comment.like,
+        edit: "(Edited)",
       },
     }).then((respone) => {
       props.getData();
@@ -32,7 +33,7 @@ export default function EditComment(props) {
     props?.setEditModal(false);
     var today = new Date(),
       time =
-        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        today.getHours() + ":" + today.getMinutes();
     const url = `https://61fe43c7a58a4e00173c97b0.mockapi.io/commentsReply/${props.comment.id}`;
     axios({
       method: "put",
@@ -43,6 +44,7 @@ export default function EditComment(props) {
         message: message,
         time: time,
         like: false,
+        edit: "(Edited)",
       },
     }).then((respone) => {
       props.getreplyData();

@@ -12,7 +12,7 @@ export default function AddComment(props) {
     props?.setModal(false)
     var today = new Date(),
       time =
-        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        today.getHours() + ":" + today.getMinutes();
     const url = `https://61fe43c7a58a4e00173c97b0.mockapi.io/comments`;
     axios({
       method: "post",
@@ -22,6 +22,7 @@ export default function AddComment(props) {
         message: message,
         time: time,
         like: false,
+        edit: "",
       },
     }).then((respone) => {
         props.getData();
@@ -32,7 +33,7 @@ export default function AddComment(props) {
     props?.setModal(false)
     var today = new Date(),
       time =
-        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        today.getHours() + ":" + today.getMinutes();
     const url = `https://61fe43c7a58a4e00173c97b0.mockapi.io/commentsReply`;
     axios({
       method: "post",
@@ -43,6 +44,7 @@ export default function AddComment(props) {
         message: message,
         time: time,
         like: false,
+        edit: "",
       },
     }).then((respone) => {
         props.getreplyData();
