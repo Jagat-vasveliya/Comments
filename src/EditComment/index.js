@@ -43,7 +43,7 @@ export default function EditComment(props) {
         name: "Jagat Vasveliya",
         message: message,
         time: time,
-        like: false,
+        like: props.comment.like,
         edit: "(Edited)",
       },
     }).then((respone) => {

@@ -60,17 +60,17 @@ export default function Card() {
         getData();
         getreplyData();
       });
-      if (table === "comments")
-        axios
-          .delete(`https://61fe43c7a58a4e00173c97b0.mockapi.io/commentsReply`, {
-            data: {
-              commentId: id,
-            },
-          })
-          .then((respone) => {
-            getData();
-            getreplyData();
-          });
+      // if (table === "comments")
+      //   axios
+      //     .delete(`https://61fe43c7a58a4e00173c97b0.mockapi.io/commentsReply`, {
+      //       data: {
+      //         commentId: id,
+      //       },
+      //     })
+      //     .then((respone) => {
+      //       getData();
+      //       getreplyData();
+      //     });
     }
   };
 
